@@ -24,4 +24,4 @@ jobs:
           tar xvfp metagen.tar.gz
           ls *
       - name: Test run
-        run: ./metagen --help
+        run: ./target/release/metagen --help
