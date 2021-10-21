@@ -21,7 +21,7 @@ jobs:
         run: |
           ls *
           tar tvf metagen.tar.gz
-          tar xvfp metagen.tar.gz
+          tar xvfp metagen.tar.gz --strip 2
           ls *
       - name: Test run
-        run: ./target/release/metagen --help
+        run: ./metagen --help
