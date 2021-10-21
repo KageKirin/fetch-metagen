@@ -33,6 +33,12 @@ jobs:
         run: |
             echo ${{ steps.relinfos.outputs.release }}
 
+      - name: Fetch latest release version
+        id: fetch-latest-release-version
+        uses: reloc8/action-latest-release-version@1.0.0
+      - name: Test
+        run: echo ${{ steps.fetch-latest-release-version.outputs.latest-release }}
+
       - name: Fetch release
         uses: dsaltares/fetch-gh-release-asset@master
         with:
