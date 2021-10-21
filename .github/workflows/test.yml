@@ -6,7 +6,7 @@ name: Fetch Test
 on: [push]
 
 jobs:
-  build:
+  fetch:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch release
@@ -19,3 +19,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: ls
         run: ls *
+      - name: test
+        run: ./metagen --help
