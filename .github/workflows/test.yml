@@ -1,0 +1,21 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Fetch Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch release
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: "KageKirin/metagen-rs"
+          #version: "tags/v0.1.18" latest
+          file: "metagen"
+          target: "metagen"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: ls
+        run: ls *
