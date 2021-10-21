@@ -14,12 +14,14 @@ jobs:
         with:
           repo: "KageKirin/metagen-rs"
           #version: "tags/v0.1.18" latest
-          file: "metagen"
-          target: "metagen"
+          file: "metagen.tar.gz"
+          target: "metagen.tar.gz"
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: ls
-        run: ls *
-      - name: chmod
-        run: chmod + ./metagen
-      - name: test
+      - name: Unpack
+        run: |
+          ls *
+          tar tvf metagen.tar.gz
+          tar xvfp metagen.tar.gz
+          ls *
+      - name: Test run
         run: ./metagen --help
