@@ -19,5 +19,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: ls
         run: ls *
+      - name: chmod
+        run: chmod + ./metagen
       - name: test
         run: ./metagen --help
