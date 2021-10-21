@@ -10,18 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Fetch latest release info
-        id: fetch-latest-release
-        uses: thebritican/fetch-latest-release@v2.0.0
-        with:
-          github_token: ${{ github.token }}
-      - name: Display latest release info
-        run: |
-          echo ${{ steps.fetch-latest-release.outputs.name }}
-          echo ${{ steps.fetch-latest-release.outputs.tag_name }}
-          echo ${{ steps.fetch-latest-release.outputs.url }}
-          echo ${{ steps.fetch-latest-release.outputs.assets_url }}
-
       - name: Fetch latest release info (2)
         id: relinfos
         uses: pozetroninc/github-action-get-latest-release@master
