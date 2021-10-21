@@ -38,3 +38,21 @@ jobs:
           ls *
       - name: Test run
         run: ./metagen --help
+
+
+      - name: Get latest release
+        id: latest_release
+        uses: kaliber5/action-get-release@v1
+        with:
+          token: ${{ github.token }}
+          owner: KageKirin
+          repo: metagen-rs
+          latest: true
+      - name: Print latest release
+        run: |
+          echo ${{ steps.latest_release.outputs.url }}
+          echo ${{ steps.latest_release.outputs.name }}
+          echo ${{ steps.latest_release.outputs.tag_name }}
+          echo ${{ steps.latest_release.outputs.html_url }}
+          echo ${{ steps.latest_release.outputs.assets_url }}
+
