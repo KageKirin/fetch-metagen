@@ -16,6 +16,11 @@ jobs:
           which metagen
           cat `which metagen`
           metagen --help
+      - name: test
+        run: |
+          metagen -s test.foobar *
+          ls .
+          cat *.meta
   pip-tar:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +31,11 @@ jobs:
           which metagen
           cat `which metagen`
           metagen --help
+      - name: test
+        run: |
+          metagen -s test.foobar *
+          ls .
+          cat *.meta
 
   npm-git:
     runs-on: ubuntu-latest
@@ -37,6 +47,11 @@ jobs:
           which metagen
           cat `which metagen`
           metagen --help
+      - name: test
+        run: |
+          metagen -s test.foobar *
+          ls .
+          cat *.meta
   npm-tar:
     runs-on: ubuntu-latest
     steps:
@@ -47,3 +62,8 @@ jobs:
           which metagen
           cat `which metagen`
           metagen --help
+      - name: test
+        run: |
+          metagen -s test.foobar *
+          ls .
+          cat *.meta
