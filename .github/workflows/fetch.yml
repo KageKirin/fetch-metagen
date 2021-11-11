@@ -20,6 +20,11 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          ls
+          cat *.meta
+      - name: test glob
+        run: |
+          ls
           metagen -s test.foobar *
           ls
           cat *.meta
@@ -37,6 +42,11 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          ls
+          cat *.meta
+      - name: test glob
+        run: |
+          ls
           metagen -s test.foobar *
           ls
           cat *.meta
@@ -55,6 +65,11 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          ls
+          cat *.meta
+      - name: test glob
+        run: |
+          ls
           metagen -s test.foobar *
           ls
           cat *.meta
@@ -72,6 +87,11 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          ls
+          cat *.meta
+      - name: test glob
+        run: |
+          ls
           metagen -s test.foobar *
           ls
           cat *.meta
