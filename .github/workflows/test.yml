@@ -34,7 +34,7 @@ jobs:
         run: |
           ls *
           tar tvf metagen.tar.gz
-          tar xvfp metagen.tar.gz --strip 3
+          tar xvfp metagen.tar.gz
           ls *
       - name: Test run
         run: ./metagen --help
