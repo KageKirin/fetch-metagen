@@ -6,89 +6,28 @@ name: Test fetching packages
 on: [push]
 
 jobs:
-  pip-git:
+  fetch:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        action:
+          - "pip install git+https://github.com/kagekirin/metagen-py.git"
+          - "pip install https://github.com/kagekirin/metagen-py/tarball/main"
+          - "npm install -g git+https://git@github.com/kagekirin/metagen-js.git"
+          - "npm install -g https://github.com/kagekirin/metagen-js/tarball/main"
     steps:
-      - name: fetch git
-        run: pip install git+https://github.com/kagekirin/metagen-py.git
+      - name: fetch
+        run: ${{ matrix.action }}
       - name: version
         run: |
           which metagen
           cat `which metagen`
           metagen --help
-      - name: list files before run
-        run: ls
-      - name: test single file
-        run: metagen -s test.foobar README.md
-      - name: list files after 1st run
-        run: ls
-      - name: test file globbing
-        run: metagen -s test.foobar *
-      - name: list files after glob run
-        run: ls
-      - name: verify generated meta files
+      - name: create some files
         run: |
-          cat README.md.meta
-          cat *.meta
-  pip-tar:
-    runs-on: ubuntu-latest
-    steps:
-      - name: fetch tarball
-        run: pip install https://github.com/kagekirin/metagen-py/tarball/main
-      - name: version
-        run: |
-          which metagen
-          cat `which metagen`
-          metagen --help
-      - name: list files before run
-        run: ls
-      - name: test single file
-        run: metagen -s test.foobar README.md
-      - name: list files after 1st run
-        run: ls
-      - name: test file globbing
-        run: metagen -s test.foobar *
-      - name: list files after glob run
-        run: ls
-      - name: verify generated meta files
-        run: |
-          cat README.md.meta
-          cat *.meta
-
-  npm-git:
-    runs-on: ubuntu-latest
-    steps:
-      - name: fetch git
-        run: npm install -g git+https://git@github.com/kagekirin/metagen-js.git
-      - name: version
-        run: |
-          which metagen
-          cat `which metagen`
-          metagen --help
-      - name: list files before run
-        run: ls
-      - name: test single file
-        run: metagen -s test.foobar README.md
-      - name: list files after 1st run
-        run: ls
-      - name: test file globbing
-        run: metagen -s test.foobar *
-      - name: list files after glob run
-        run: ls
-      - name: verify generated meta files
-        run: |
-          cat README.md.meta
-          cat *.meta
-  npm-tar:
-    runs-on: ubuntu-latest
-    steps:
-      - name: fetch tarball
-        run: npm install -g https://github.com/kagekirin/metagen-js/tarball/main
-      - name: version
-        run: |
-          which metagen
-          cat `which metagen`
-          metagen --help
+          echo "important stuff" > README.md
+          touch foo.bar
+          touch baz
       - name: list files before run
         run: ls
       - name: test single file
