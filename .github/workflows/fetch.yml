@@ -20,6 +20,7 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          metagen -s test.foobar *
           ls
           cat *.meta
   pip-tar:
@@ -36,6 +37,7 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          metagen -s test.foobar *
           ls
           cat *.meta
 
@@ -53,6 +55,7 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          metagen -s test.foobar *
           ls
           cat *.meta
   npm-tar:
@@ -69,5 +72,6 @@ jobs:
         run: |
           ls
           metagen -s test.foobar README.md
+          metagen -s test.foobar *
           ls
           cat *.meta
