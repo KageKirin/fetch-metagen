@@ -19,8 +19,7 @@ jobs:
           - |
             dotnet tool install -g paket;
             echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net5.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
-            paket update;
-            dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs metagen
+            paket install
     steps:
       - name: fetch
         run: ${{ matrix.action }}
