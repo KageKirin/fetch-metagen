@@ -15,6 +15,7 @@ jobs:
           - "pip install https://github.com/kagekirin/metagen-py/tarball/main"
           - "npm install -g git+https://git@github.com/kagekirin/metagen-js.git"
           - "npm install -g https://github.com/kagekirin/metagen-js/tarball/main"
+          - "cargo install --branch main --git https://github.com/kagekirin/metagen-rs.git"
     steps:
       - name: fetch
         run: ${{ matrix.action }}
