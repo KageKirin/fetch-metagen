@@ -16,18 +16,27 @@ jobs:
           - "npm install -g git+https://git@github.com/kagekirin/metagen-js.git"
           - "npm install -g https://github.com/kagekirin/metagen-js/tarball/main"
           - "cargo install --branch main --git https://github.com/kagekirin/metagen-rs.git"
-          - |
-            dotnet tool install -g paket;
-            curl -LO https://dot.net/v1/dotnet-install.sh;
-            chmod +x dotnet-install.sh;
-            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version latest;
-            dotnet --list-sdks;
-            echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
-            paket install;
-            dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs --framework net6.0 metagen
+          - "dotnet"
     steps:
       - name: fetch
+        if: ${{ matrix.action != 'dotnet' }}
         run: ${{ matrix.action }}
+
+
+      - name: dotnet
+        if: ${{ matrix.action == 'dotnet' }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+      - name: fetch (dotnet)
+        if: ${{ matrix.action == 'dotnet' }}
+        run: |
+          dotnet --list-sdks;
+          dotnet tool install -g paket;
+          echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
+          paket install;
+          dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs --framework net6.0 metagen
+
       - name: version
         run: |
           which metagen
