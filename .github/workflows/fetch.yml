@@ -28,13 +28,18 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0.x'
+      - name: install paket (dotnet)
+        if: ${{ matrix.action == 'dotnet' }}
+        run: |
+          dotnet --list-sdks
+          dotnet tool install -g paket
       - name: fetch (dotnet)
         if: ${{ matrix.action == 'dotnet' }}
         run: |
-          dotnet --list-sdks;
-          dotnet tool install -g paket;
-          echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
-          paket install;
+          echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies
+          echo 'git https://github.com/kagekirin/metagen-cs.git main' > paket.dependencies
+          paket update
+          dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true paket-files/github.com/kagekirin/metagen-cs/metagen.csproj
           dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs --framework net6.0 metagen
 
       - name: version
