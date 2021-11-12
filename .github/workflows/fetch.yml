@@ -21,9 +21,10 @@ jobs:
             curl -LO https://dot.net/v1/dotnet-install.sh;
             chmod +x dotnet-install.sh;
             curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version latest;
-            echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f netcoreapp3.1 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
+            dotnet --list-sdks;
+            echo 'git https://github.com/kagekirin/metagen-cs.git main build: "dotnet publish -f net6.0 -r linux-x64 -c Release --self-contained true"' > paket.dependencies;
             paket install;
-            dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs metagen
+            dotnet tool install -g --add-source paket-files/github.com/kagekirin/metagen-cs --framework net6.0 metagen
     steps:
       - name: fetch
         run: ${{ matrix.action }}
