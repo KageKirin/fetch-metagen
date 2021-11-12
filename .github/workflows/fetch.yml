@@ -27,7 +27,6 @@ jobs:
       - name: version
         run: |
           which metagen
-          cat `which metagen`
           metagen --help
       - name: create some files
         run: |
