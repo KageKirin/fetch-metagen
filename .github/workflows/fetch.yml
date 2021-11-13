@@ -16,7 +16,8 @@ jobs:
           - "npm install -g git+https://git@github.com/kagekirin/metagen-js.git"
           - "npm install -g https://github.com/kagekirin/metagen-js/tarball/main"
           - "cargo install --branch main --git https://github.com/kagekirin/metagen-rs.git"
-          - "dotnet nuget add source --username KageKirin --password ${{ github.TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/KageKirin/index.json\";"
+          - |
+            "dotnet nuget add source --username KageKirin --password ${{ github.TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/KageKirin/index.json\";"
             "dotnet tool install -g --add-source https://nuget.pkg.github.com/kagekirin/index.json metagen"
           - "dotnet"
     steps:
