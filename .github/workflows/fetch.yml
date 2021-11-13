@@ -18,7 +18,7 @@ jobs:
           - cargo install --branch main --git https://github.com/kagekirin/metagen-rs.git
           - |
             dotnet nuget add source --username KageKirin --password ${{ github.TOKEN }} --store-password-in-clear-text true --name github "https://nuget.pkg.github.com/KageKirin/index.json";
-            dotnet tool install -g --add-source https://nuget.pkg.github.com/kagekirin/index.json metagen
+            dotnet tool install -g metagen
           - dotnet
     steps:
       - name: fetch
